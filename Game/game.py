@@ -38,9 +38,9 @@ while True:
     else:
         padder1.set_y_vel(0)
 
-    if padder2.obj.y < ms.get_position()[1]:
+    if padder2.obj.y < ms.get_position()[1] - padder2.obj.height/2 - 3:
         padder2.set_y_vel(1)
-    elif padder2.obj.y > ms.get_position()[1]:
+    elif padder2.obj.y > ms.get_position()[1] - padder2.obj.height/2 + 3:
         padder2.set_y_vel(-1)
     else:
         padder2.set_y_vel(0)
