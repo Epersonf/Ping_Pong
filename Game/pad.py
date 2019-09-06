@@ -18,7 +18,7 @@ class Pad:
         if value == 0:
             self.y_vel = 0
             return
-        v = 300 * self.gui.delta_time()
+        v = 800 * self.gui.delta_time()
         if value < 0:
             v = -v
         self.y_vel = v
@@ -28,8 +28,9 @@ class Pad:
         self.obj.y = new_y
 
     def draw(self):
-        if self.obj.y > 0 or self.obj.y < (self.gui.height - self.obj.height):
+        if self.obj.y >= 0 and self.obj.y <= (self.gui.height - self.obj.height):
             self.obj.y += self.y_vel
+            self.y_vel = 0
         else:
             if self.obj.y < 0:
                 self.obj.y = 0

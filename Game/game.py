@@ -10,6 +10,8 @@ bg = GameImage("Assets/Bg.png")
 bg.set_position(0, 0)
 
 
+score = [0, 0]
+
 padder1 = Pad("Assets/Pad.png", gui)
 padder2 = Pad("Assets/Pad.png", gui)
 
@@ -19,8 +21,8 @@ ball = Ball("Assets/Ball.png", gui, players)
 ball.set_pos(gui.width/2, gui.height/2)
 
 
-padder1.set_location(gui.width/2 - gui.width/4, gui.height/2)
-padder2.set_location(gui.width/2 + gui.width/4, gui.height/2)
+padder1.set_location(gui.width/2 - gui.width/2.3, gui.height/2)
+padder2.set_location(gui.width/2 + gui.width/2.3, gui.height/2)
 
 kbrd = gui.get_keyboard()
 ms = gui.get_mouse()
@@ -29,10 +31,10 @@ while True:
     bg.draw()
     ball.draw(gui.width, gui.height)
 
-    if kbrd.key_pressed("UP"):
-        padder1.set_y_vel(-1)
-    elif kbrd.key_pressed("DOWN"):
+    if kbrd.key_pressed("DOWN"):
         padder1.set_y_vel(1)
+    elif kbrd.key_pressed("UP"):
+        padder1.set_y_vel(-1)
     else:
         padder1.set_y_vel(0)
 
