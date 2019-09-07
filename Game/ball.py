@@ -18,20 +18,24 @@ class Ball:
     def set_pos(self, x, y):
         self.obj.set_position(x, y)
 
-    def draw(self, width, height):
+    def draw(self, width, height, score):
 
         self.obj.x += self.x_vel * self.gui.delta_time()
         self.obj.y += self.y_vel * self.gui.delta_time()
 
-        if self.obj.y > height - self.obj.height or self.obj.y < 0:
-            self.y_vel = -self.y_vel
-            if self.obj.y < 0:
-                self.obj.y = 0
-            elif self.obj.y > height:
-                self.obj.y = height
+        if self.obj.y < 0:
+            self.obj.y = 0
+            self.y_vel = abs(self.y_vel)
+        elif self.obj.y > height - self.obj.height:
+            self.obj.y = height - self.obj.height
+            self.y_vel = -abs(self.y_vel)
 
         if self.obj.x > width - self.obj.width or self.obj.x < 0:
-            self.obj.set_position(self.gui.width/2, self.gui.height/2)
+            self.obj.set_position(self.gui.width/2 - self.obj.width, self.gui.height/2 - self.obj.height)
+            if self.obj.width > width - self.obj.width:
+                score[0] += 1
+            else:
+                score[1] += 1
 
         for i in self.padders:
             if self.obj.collided(i.obj):
