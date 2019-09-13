@@ -35,9 +35,9 @@ class Pad:
     def draw(self, ball):
 
         if self.ai_controlled:
-            if self.obj.y < ball.obj.y - self.obj.height / 2 - 90:
+            if self.obj.y < ball.obj.y - self.obj.height / 2 - 80:
                 self.set_y_vel(1)
-            elif self.obj.y > ball.obj.y - self.obj.height / 2 + 90:
+            elif self.obj.y > ball.obj.y - self.obj.height / 2 + 80:
                 self.set_y_vel(-1)
             else:
                 self.set_y_vel(0)
