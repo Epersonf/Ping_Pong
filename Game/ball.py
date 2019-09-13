@@ -31,11 +31,11 @@ class Ball:
             self.y_vel = -abs(self.y_vel)
 
         if self.obj.x > width - self.obj.width or self.obj.x < 0:
-            self.obj.set_position(self.gui.width/2 - self.obj.width, self.gui.height/2 - self.obj.height)
-            if self.obj.width > width - self.obj.width:
+            if self.obj.x > width - self.obj.width:
                 score[0] += 1
-            else:
+            if self.obj.x < 0:
                 score[1] += 1
+            self.obj.set_position(self.gui.width/2 - self.obj.width, self.gui.height/2 - self.obj.height)
 
         for i in self.padders:
             if self.obj.collided(i.obj):

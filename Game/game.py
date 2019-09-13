@@ -33,4 +33,6 @@ while True:
     ball.draw(gui.width, gui.height, score)
     padder1.draw(ball)
     padder2.draw(ball)
+    gui.draw_text(str(score[1]), gui.width/2 - 90, 50, 40)
+    gui.draw_text(str(score[0]), gui.width/2 + 50, 50, 40)
     gui.update()
