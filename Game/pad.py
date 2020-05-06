@@ -1,4 +1,5 @@
 from Game.PPlay.sprite import *
+from Game.ai_pad import *
 
 class Pad:
 
@@ -16,8 +17,11 @@ class Pad:
         self.kbrd = self.gui.get_keyboard()
         self.ms = self.gui.get_mouse()
 
-    def set_ia_controlled(self, b):
-        self.ai_controlled = b
+    ai_controller = None
+    def set_ia_controlled(self, bool_set, controller=None):
+        self.ai_controlled = bool_set
+        self.ai_controller = controller
+
 
     def set_y_vel(self, value):
         if value == 0:
@@ -32,15 +36,10 @@ class Pad:
         self.obj.x = new_x
         self.obj.y = new_y
 
-    def draw(self, ball):
+    def draw(self):
 
         if self.ai_controlled:
-            if self.obj.y < ball.obj.y - self.obj.height / 2 - 80:
-                self.set_y_vel(1)
-            elif self.obj.y > ball.obj.y - self.obj.height / 2 + 80:
-                self.set_y_vel(-1)
-            else:
-                self.set_y_vel(0)
+            self.ai_controller.move()
         elif not self.mouse_controlled:
             if self.kbrd.key_pressed("DOWN"):
                 self.set_y_vel(1)
